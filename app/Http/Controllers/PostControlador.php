@@ -15,7 +15,7 @@ class PostControlador extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('id', 'desc')->paginate(6);
         return view('index', compact('posts'));
     }
 
@@ -24,9 +24,9 @@ class PostControlador extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        
     }
 
     /**
@@ -66,7 +66,8 @@ class PostControlador extends Controller
      */
     public function edit($id)
     {
-        //
+        $posts = Post::all();
+        return view('atualizar', compact('posts'));
     }
 
     /**
@@ -76,9 +77,9 @@ class PostControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(/* Request $request, $id */)
     {
-
+          
     }
 
     /**
