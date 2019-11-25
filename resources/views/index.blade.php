@@ -80,6 +80,7 @@
           <div class="row">
 
             @foreach ($posts as $post)
+            <div class="">
                 <div class="card-body">
                   <h5 class="card-title">ID: {{ $post->numero }} <button class="btn btn-primary" onclick="aumentar()">Expandir</button></h5>
                   <iframe class="iframe" src="{{ $post->link }}" frameborder="0" height="1000"></iframe>
@@ -89,6 +90,7 @@
                     <button type="submit" class="btn btn-sm btn-outline-danger">Apagar</button>
                   </form>
                 </div>
+              </div>
             @endforeach
 
           </div>
