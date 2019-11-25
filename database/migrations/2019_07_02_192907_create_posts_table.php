@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->bigIncrements('id');
             $table->float('numero');
             $table->string('descricao');
-            $table->string('arquivo');
+            $table->string('link');
             $table->timestamps();
         });
     }

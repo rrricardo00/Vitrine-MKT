@@ -30,6 +30,12 @@
         .btn { margin-right: 5px; }
         footer { padding-top: 3rem; padding-bottom: 3rem; }
         footer p { margin-bottom: .25rem; }
+
+        .expandir{
+          width: 600px;
+          z-index: 1px;
+        }
+
     </style>
 </head>
 <body>
@@ -54,13 +60,13 @@
               <input type="number" class="form-control" id="numero" name="numero" placeholder="ID">
             </div>
             <div class="form-group text-left">
-              <label for="descricao">Descrição</label>
-              <textarea class="form-control" id="descricao" name="descricao" rows="2"></textarea>
+              <label for="link">Link</label>
+              <input class="form-control" id="link" name="link">
             </div>
-            <div class="custom-file">
-              <input type="file" class="custom-file-input" id="arquivo" name="arquivo">
-              <label class="custom-file-label" for="arquivo">Escolha um arquivo</label>
-            </div>
+            <div class="form-group text-left">
+                <label for="descricao">Descrição</label>
+                <textarea class="form-control" id="descricao" name="descricao"></textarea>
+              </div>
             <p>
               <button type="submit" class="btn btn-primary my-2">Enviar</button>
               <button type="reset" class="btn btn-secondary my-2">Cancelar</button>
@@ -74,26 +80,22 @@
           <div class="row">
 
             @foreach ($posts as $post)
-                <div class="col-md-4">
-                  <div class="card mb-4 shadow-sm">
-                      <p class="card-text">ID: {{$post->numero}}</p>
-                    <img class="card-img-top figure-img img-fluid rounded" src="/storage/{{ $post->arquivo }}">
-                    <div class="card-body">
-                        <p class="card-text">Descrição: {{$post->descricao}}</p>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                          <!--button type="button" class="btn btn-sm btn-outline-secondary">Download</button-->
-                          <a type="button" class="btn btn-sm btn-outline-secondary" href="/download/{{ $post->id }}">Download</a>
-                          <form method="POST" action="/{{ $post->id }}">
-                            @csrf
-                            <input type="hidden" name="_method" value="delete">
-                            <button type="submit" class="btn btn-sm btn-outline-danger">Apagar</button>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+
+                    
+            <div class="">
+                
+                <div class="card-body">
+                  <h5 class="card-title">ID: {{ $post->numero }} <button class="btn btn-primary" onclick="aumentar()">Expandir</button></h5>
+                  <iframe class="iframe" src="{{ $post->link }}" frameborder="0" height="1000"></iframe>
+                  <form method="POST" action="/{{ $post->id }}">
+                    @csrf
+                    <input type="hidden" name="_method" value="delete">
+                    <button type="submit" class="btn btn-sm btn-outline-danger">Apagar</button>
+                    
+                  </form>
                 </div>
+              </div>
+
             @endforeach
 
           </div>
@@ -113,6 +115,31 @@
 
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
     <script>
+
+        let responsivo = false;
+
+      
+                function aumentar() {  
+
+                  responsivo = !responsivo;
+
+                    let pegarId = document.querySelectorAll('.iframe');
+                    console.log(pegarId);
+
+                    if (responsivo) {
+                      for (let i = 0; i < pegarId.length; i++) {
+                      const element = pegarId[i].classList.add('expandir');
+                      console.log(element);
+                    }
+                    } else {
+                      for (let i = 0; i < pegarId.length; i++) {
+                      const element = pegarId[i].classList.remove('expandir');
+                      console.log(element);
+                    }
+                    }
+
+                  }
+               
 
        //Ano Atual----------------------------------------
        let data = new Date();

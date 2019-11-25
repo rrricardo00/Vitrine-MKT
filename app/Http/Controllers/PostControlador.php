@@ -37,11 +37,11 @@ class PostControlador extends Controller
      */
     public function store(Request $request)
     {
-        $path = $request->file('arquivo')->store('imagens', 'public');
+        
         $posts = new Post();
         $posts->numero = $request->input('numero');
         $posts->descricao = $request->input('descricao');
-        $posts->arquivo = $path; //$request->input('arquivo');
+        $posts->link = $request->input('link');
         $posts->save();
         return redirect('/');
 
@@ -99,14 +99,6 @@ class PostControlador extends Controller
     }
 
     //Download
-    public function download($id){
-        $posts = Post::find($id);
-        if(isset($posts)){
-            //$path = Storage::disk('public')->getDriver()->getAdapter()->applyPathPrefix($posts->arquivo);
-            //return response()->download($path);
-            return Storage::disk('public')->download($posts->arquivo);
-        }
-        return redirect('/');
-    }
+    
 
 }
