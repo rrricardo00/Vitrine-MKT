@@ -66,7 +66,7 @@ class PostControlador extends Controller
      */
     public function edit($id)
     {
-        $posts = Post::all();
+        $posts = Post::find($id);
         return view('atualizar', compact('posts'));
     }
 
@@ -92,8 +92,7 @@ class PostControlador extends Controller
     {
         $posts = Post::find($id);
         if(isset($posts)){
-            $arquivo = $posts->arquivo;
-            Storage::disk('public')->delete($arquivo);
+         
             $posts->delete();
         }
         return redirect('/');

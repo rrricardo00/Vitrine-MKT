@@ -46,19 +46,19 @@
       <section class="jumbotron text-center">
         <div class="container">
           <h1 class="jumbotron-heading">Atualizar MKT</h1>
-          <form method="POST" action="/" enctype="multipart/form-data">
+          <form method="POST" action="/">
             @csrf
             <div class="form-group text-left">
               <label for="numero">Número ID</label>
-              <input type="number" class="form-control" id="numero" name="numero" placeholder="ID">
+              <input type="number" class="form-control" id="numero" name="numero" placeholder="ID" value="{{ $posts->numero }}">
             </div>
             <div class="form-group text-left">
               <label for="link">Link</label>
-              <input class="form-control" id="link" name="link">
+              <input class="form-control" id="link" name="link" value="{{ $posts->link }}">
             </div>
             <div class="form-group text-left">
                 <label for="descricao">Descrição</label>
-                <textarea class="form-control" id="descricao" name="descricao"></textarea>
+                <textarea class="form-control" id="descricao" name="descricao">{{ $posts->descricao }}</textarea>
               </div>
             <p>
               <button type="submit" class="btn btn-primary my-2">Atualizar</button>
