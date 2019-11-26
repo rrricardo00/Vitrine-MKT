@@ -93,47 +93,46 @@
             </div>
           </div>
           <!--modal-->
+          
         <main role="main">
-
-        
-
-          <div class="album py-5 bg-light">
-            <div class="container">
-            <span class="justify-content-sm-center">{{$posts->links()}}</span>
-              <div class="row">
+            
+          <div class="row album py-5 bg-light justify-content-sm-center">
+            {{-- <div class="container"> --}}
+            
+              {{-- <div class="row"> --}}
               
                 @foreach ($posts as $post)
-                <div class="">
-                
-                    <div class="card-body">
-                      <h5 class="card-title"><span class="btn btn-warning">ID: {{ $post->numero }}</span> <button class="btn btn-primary" data-toggle="modal" data-target="#{{ $post->descricao }}">Expandir</button></h5>
-                      
-                      <div class="modal fade"  id="{{ $post->descricao }}" tabindex="-1" role="dialog" aria-labelledby="{{ $post->descricao }}" aria-hidden="true">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                      <h5 class="modal-title full-width" id="{{ $post->descricao }}">{{ $post->descricao }}</h5>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                        </button>
-                                </div>
-                              <div {{--  class="modal-body"  --}}>
-                                                <iframe class="iframe" src="{{ $post->link }}" frameborder="0" height="1000" width="800" scrolling="auto" ></iframe>
-                              </div>
-                              <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                      
-                              </div>
-                              </div>
-                            </div>
-                            </div>              
-                                    
-                                                      
-                      <iframe class="iframe" src="{{ $post->link }}" frameborder="0" height="1700" width="320"></iframe>
+
+               
+              
+               <div class="p-3">
+                  <p><button class="btn btn-warning">{{$post->numero}}</button><button class="btn btn-primary" data-toggle="modal" data-target="#{{$post->descricao}}">Responsivo</button></p>
+                   <!-- Modal -->
+              <div class="modal fade" id="{{$post->descricao}}" tabindex="-1" role="dialog" aria-labelledby="{{$post->descricao}}Label" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="{{$post->descricao}}Label">{{$post->descricao}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body text-center">
+                      <iframe src="{{$post->link}}" frameborder="0" width="320" height="1200"></iframe>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--FimModal-->
+                      <iframe class="iframe" id="iframe" src="{{ $post->link }}" frameborder="0" width="640" height="1000"></iframe>
                       <div class="row">
                         <form method="POST" action="/{{ $post->id }}">
                           @csrf
-                          {{-- <input type="hidden" name="_method" value="delete"> --}}
+                          <input type="hidden" name="_method" value="delete">
                           <button type="submit" class="btn btn-sm btn-outline-danger">Apagar</button>
                         </form>
                         <form action="/atualizar/{{$post->id}}" method="get">
@@ -142,10 +141,9 @@
                         </form>
                       </div>
                     </div>
-                  </div>
                 @endforeach
 
-              </div>
+              {{-- </div> --}}
             </div>
           </div>
           
