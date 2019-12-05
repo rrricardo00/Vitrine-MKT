@@ -12,9 +12,10 @@
 */
 
 Route::get('/', 'PostControlador@index');
-//downlod
+//download
 Route::get('/download/{id}', 'PostControlador@download');
 Route::post('/', 'PostControlador@store');
 Route::delete('/{id}', 'PostControlador@destroy');
 Route::get('/atualizar/{id}', 'PostControlador@edit');
 Route::post('/atualizar/{id}', 'PostControlador@update');
+Route::get('/procurar/{id}', 'PostControlador@show');

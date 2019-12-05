@@ -53,9 +53,11 @@ class PostControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $procurar = $request->input('procurar');
+        $posts = Post::where('descricao', 'like', $procurar)->get();
+        return json_encode($posts);
     }
 
     /**
@@ -68,6 +70,7 @@ class PostControlador extends Controller
     {
         $posts = Post::find($id);
         return view('atualizar', compact('posts'));
+        
     }
 
     /**
@@ -77,9 +80,15 @@ class PostControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(/* Request $request, $id */)
+    public function update(Request $request, $id)
     {
-          
+        $posts = Post::find($id);
+        $posts->numero = $request->input('numero');
+        $posts->descricao = $request->input('descricao');
+        $posts->link = $request->input('link');
+        $posts->save();
+        return redirect('/');
+
     }
 
     /**

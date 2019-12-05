@@ -42,6 +42,14 @@
               <a href="/" class="navbar-brand d-flex align-items-center">
                 <strong>Vitrine MKT</strong>
               </a>
+              <!--Procurar-->
+              <div>
+                <form class="form-inline my-2 my-lg-0 float-right" method="get" action="/procurar/id">
+                  <input class="form-control mr-sm-2" type="search" name="procurar" id="procurar" placeholder="MKT" aria-label="Search">
+                  <button class="btn btn-danger my-2 my-sm-0" type="submit">Procurar</button>
+                </form>
+              </div>
+              <!--fim procurar-->
               <!--trigger modal-->
               <button type="button" class="btn btn-light float-right" data-toggle="modal" data-target="#modal">
                   Adicionar
@@ -102,9 +110,6 @@
               {{-- <div class="row"> --}}
               
                 @foreach ($posts as $post)
-
-               
-              
                <div class="p-3">
                   <p><button class="btn btn-warning">{{$post->numero}}</button><button class="btn btn-primary" data-toggle="modal" data-target="#{{$post->descricao}}">Responsivo</button></p>
                    <!-- Modal -->
@@ -130,11 +135,6 @@
                 <!--FimModal-->
                       <iframe class="iframe" id="iframe" src="{{ $post->link }}" frameborder="0" width="640" height="1000"></iframe>
                       <div class="row">
-                        <form method="POST" action="/{{ $post->id }}">
-                          @csrf
-                          <input type="hidden" name="_method" value="delete">
-                          <button type="submit" class="btn btn-sm btn-outline-danger">Apagar</button>
-                        </form>
                         <form action="/atualizar/{{$post->id}}" method="get">
                         @csrf
                         <button type="submit" class="btn btn-dark btn-sm">Atualizar</button>
