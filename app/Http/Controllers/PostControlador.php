@@ -56,7 +56,7 @@ class PostControlador extends Controller
     public function show(Request $request)
     {
         $procurar = $request->input('procurar');
-        $posts = Post::where('descricao', 'like', $procurar)->get();
+        $posts = Post::where('descricao', 'like', '%'.$procurar.'%')->get();
         return json_encode($posts);
     }
 
@@ -107,7 +107,6 @@ class PostControlador extends Controller
         return redirect('/');
     }
 
-    //Download
     
 
 }

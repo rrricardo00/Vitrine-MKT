@@ -45,7 +45,7 @@
               <!--Procurar-->
               <div>
                 <form class="form-inline my-2 my-lg-0 float-right" method="get" action="/procurar/id">
-                  <input class="form-control mr-sm-2" type="search" name="procurar" id="procurar" placeholder="MKT" aria-label="Search">
+                  <input class="form-control mr-sm-2" type="search" name="procurar" id="procurar" placeholder="Pesquisar..." aria-label="Search">
                   <button class="btn btn-danger my-2 my-sm-0" type="submit">Procurar</button>
                 </form>
               </div>
