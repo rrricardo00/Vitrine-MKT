@@ -30,8 +30,6 @@
           .btn { margin-right: 5px; }
           footer { padding-top: 3rem; padding-bottom: 3rem; }
           footer p { margin-bottom: .25rem; }
-          
-
       </style>
         
     </head>
